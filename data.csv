@@ -1,7 +1,51 @@
 question,answer
-wifi ต่อไม่ได้,ให้ลองรีสตาร์ท router ก่อน โดยถอดปลั๊กทิ้งไว้ 30 วินาทีแล้วเสียบใหม่ ถ้ายังไม่ได้ให้ลอง Forget Network แล้วต่อใหม่
-ลืมรหัสผ่าน Windows,ให้รีสตาร์ทเครื่องแล้วกด F8 เพื่อเข้า Safe Mode หรือใช้ Microsoft Account Reset ที่ account.microsoft.com
-เครื่องช้ามาก,เปิด Task Manager (Ctrl+Shift+Esc) แล้วดูว่าโปรแกรมไหนกิน CPU/RAM เยอะ ลองปิดโปรแกรมที่ไม่ใช้ออก
-เครื่องพิมพ์ไม่ทำงาน,ให้เช็คสายต่อและตรวจว่า Printer Online อยู่ไหม ลองลบ Print Job ที่ค้างอยู่แล้ว Restart Spooler Service
+wifi ต่อไม่ได้,ให้ลองรีสตาร์ท router โดยถอดปลั๊กทิ้งไว้ 30 วินาทีแล้วเสียบใหม่ ถ้ายังไม่ได้ให้ลอง Forget Network แล้วต่อใหม่
+ลืมรหัสผ่าน Windows,ให้คลิก Forgot Password บนหน้า Login แล้วใช้ Microsoft Account Reset หรือถ้าเป็น Local Account ให้ใช้ Security Questions ตอบคำถามเพื่อรีเซ็ต
+เครื่องช้ามาก,เปิด Task Manager (Ctrl+Shift+Esc) ดูว่าโปรแกรมไหนกิน CPU หรือ RAM เยอะ ลองปิดโปรแกรมที่ไม่ใช้ออก และลบไฟล์ขยะด้วย Disk Cleanup
+เครื่องพิมพ์ไม่ทำงาน,ให้เช็คสายต่อและตรวจว่า Printer Online อยู่ไหม ลองลบ Print Job ที่ค้างอยู่ใน Print Queue แล้ว Restart Spooler Service
 ติดตั้งโปรแกรมไม่ได้,ให้คลิกขวาที่ไฟล์ติดตั้งแล้วเลือก Run as Administrator ถ้ายังไม่ได้ให้ปิด Antivirus ชั่วคราวแล้วลองใหม่
-จอดำไม่ขึ้น,ให้กดปุ่ม Power ค้างไว้ 10 วินาทีเพื่อ Force Shutdown แล้วเปิดใหม่ ถ้ายังดำอยู่ให้เช็คสายต่อจอ
+จอดำไม่ขึ้น,ให้กดปุ่ม Power ค้างไว้ 10 วินาทีเพื่อ Force Shutdown แล้วเปิดใหม่ ถ้ายังดำอยู่ให้เช็คสายต่อจอหรือลอง Monitor อื่น
+คอมเปิดไม่ติด,ให้เช็คว่าปลั๊กไฟเสียบแน่นไหม ลองถอด RAM แล้วเสียบใหม่ ถ้ายังไม่ได้อาจเป็นปัญหา Power Supply
+เน็ตช้ามาก,ให้ทดสอบความเร็วที่ speedtest.net ก่อน ถ้าช้าจริงให้รีสตาร์ท router และเช็คว่ามีคนใช้ bandwidth เยอะในเครือข่ายไหม
+แป้นพิมพ์พิมพ์ไม่ได้,ให้ลองถอดแล้วเสียบ USB ใหม่ หรือลอง Port อื่น ถ้าเป็น Bluetooth ให้ Unpair แล้ว Pair ใหม่ ลองรีสตาร์ทเครื่องด้วย
+เมาส์ไม่ขยับ,ให้เช็คว่าสายหรือ USB Receiver เสียบแน่นไหม ลอง Port อื่น ถ้าไร้สายให้เปลี่ยนถ่านใหม่
+เสียงไม่ออก,คลิกขวาที่ไอคอนเสียงแล้วเลือก Troubleshoot Sound Problems หรือเช็คว่า Volume ไม่ได้ Mute และเลือก Output Device ถูกต้องไหม
+ไฟล์หายไป,ให้เช็คใน Recycle Bin ก่อน ถ้าไม่มีให้ลองค้นหาด้วย Windows Search หรือใช้โปรแกรม Recuva เพื่อกู้ไฟล์ที่ถูกลบ
+คอมร้อนมาก,ให้เช็คว่าพัดลมทำงานปกติไหม ทำความสะอาด Heatsink และพัดลมจากฝุ่น ลดการใช้โปรแกรมหนักๆ หลายตัวพร้อมกัน
+บลูสกรีน BSOD,ให้จด Error Code ที่ขึ้นมา แล้ว Search หาสาเหตุ โดยทั่วไปให้ลอง Update Driver หรือ Run Memory Diagnostic
+อัปเดต Windows ค้าง,ให้รอสักครู่ก่อนเพราะบาง Update ใช้เวลานาน ถ้าค้างเกิน 2 ชั่วโมงให้รีสตาร์ทแล้วลอง Update ใหม่
+โปรแกรมค้างปิดไม่ได้,ให้เปิด Task Manager (Ctrl+Shift+Esc) แล้วคลิกขวาที่โปรแกรมนั้น เลือก End Task เพื่อบังคับปิด
+ไวรัสในเครื่อง,ให้รัน Windows Defender Full Scan หรือโหลด Malwarebytes มาสแกนฟรี อย่าเปิดไฟล์แนบ Email ที่ไม่รู้จัก
+เชื่อม Bluetooth ไม่ได้,ให้ปิด Bluetooth แล้วเปิดใหม่ ลบ Device ที่ Pair ไว้แล้ว Pair ใหม่ตั้งแต่ต้น ตรวจสอบว่า Driver Bluetooth อัปเดตแล้วหรือยัง
+USB ไม่ถูกตรวจจับ,ให้ลอง Port อื่น หรือลองเสียบกับคอมเครื่องอื่นเพื่อดูว่า USB พัง ถ้าไม่ได้ให้ Update USB Driver ใน Device Manager
+Excel เปิดไม่ได้,ให้ลองคลิกขวาที่ไฟล์แล้วเลือก Open With > Excel ถ้า File เสียหายให้ลอง Open and Repair ใน Excel หรือกู้จาก AutoRecover
+ลืมรหัสผ่าน WiFi,ให้เปิด Network Settings แล้วคลิกขวาที่ WiFi ที่ต่ออยู่ เลือก Properties > Security แล้วติ๊ก Show Characters เพื่อดูรหัสผ่าน
+กล้อง Webcam ไม่ทำงาน,ให้เช็คว่าโปรแกรมอื่นใช้กล้องอยู่ไหม ลองรีสตาร์ทเครื่อง และตรวจสอบ Privacy Settings ว่าอนุญาตให้แอปใช้กล้องหรือเปล่า
+ไฟล์ PDF เปิดไม่ได้,ให้โหลด Adobe Acrobat Reader ฟรีมาติดตั้ง หรือใช้เบราว์เซอร์อย่าง Chrome เปิดไฟล์ PDF ได้เลย
+อีเมลส่งไม่ได้,ให้เช็คการเชื่อมต่ออินเทอร์เน็ต ตรวจสอบว่า Email Address ผู้รับถูกต้อง และดูว่าไฟล์แนบขนาดไม่เกิน 25MB
+เบราว์เซอร์ช้า,ให้ล้าง Cache และ Cookies ใน Settings > Privacy > Clear Browsing Data ปิด Extension ที่ไม่จำเป็น และอัปเดตเบราว์เซอร์
+จอภาพมีเส้น,ให้เช็คสายต่อจอว่าหลวมไหม ลองเปลี่ยนสาย HDMI หรือ VGA ใหม่ ถ้ายังมีเส้นอยู่อาจเป็นปัญหา GPU หรือจอเสีย
+คีย์บอร์ดพิมพ์ตัวเลขแทนตัวอักษร,ให้กดปุ่ม Num Lock เพื่อปิดการใช้งาน Numpad บน Laptop
+หน้าจอหมุนไปเอง,ให้กด Ctrl+Alt+ลูกศรขึ้น เพื่อหมุนหน้าจอกลับปกติ หรือคลิกขวาที่ Desktop เลือก Display Settings แล้วปรับ Orientation
+Copy Paste ไม่ได้,ให้ลองรีสตาร์ท rdpclip.exe ใน Task Manager หรือรีสตาร์ทเครื่อง ถ้าใช้ Remote Desktop ให้เช็คว่า Clipboard Sharing เปิดอยู่
+ฮาร์ดดิสก์เต็ม,ให้ใช้ Disk Cleanup ลบไฟล์ชั่วคราว ลบโปรแกรมที่ไม่ใช้ใน Control Panel และลบไฟล์ใน Downloads และ Recycle Bin
+Windows Update ล้มเหลว,ให้รัน Windows Update Troubleshooter ใน Settings > Troubleshoot หรือลอง Reset Windows Update Components
+โปรแกรมเปิดช้ามาก,ให้เช็คใน Task Manager ว่ามีโปรแกรมรันตอน Startup เยอะไหม ปิดที่ไม่จำเป็นใน Task Manager > Startup Tab
+ไฟล์ zip แตกไม่ได้,ให้โหลด 7-Zip ฟรีมาติดตั้ง รองรับไฟล์บีบอัดทุกประเภท ถ้ามีรหัสผ่านต้องใส่รหัสด้วย
+เครือข่ายไม่พบ Shared Folder,ให้เช็คว่าเปิด Network Discovery ใน Control Panel > Network and Sharing Center > Advanced Sharing Settings
+Remote Desktop เชื่อมไม่ได้,ให้เช็คว่าเปิด Remote Desktop ใน System Properties > Remote ปลายทาง และ Firewall ไม่ได้บล็อก Port 3389
+Driver การ์ดจอมีปัญหา,ให้เข้า Device Manager คลิกขวาที่ Display Adapter แล้ว Update Driver หรือโหลด Driver ล่าสุดจากเว็บผู้ผลิต
+ลืมรหัสผ่าน Email,ให้กด Forgot Password บนหน้า Login แล้วยืนยันตัวตนผ่านเบอร์โทรหรืออีเมลสำรองที่ผูกไว้
+แบตเตอรี่ Laptop หมดเร็ว,ให้ลด Brightness หน้าจอ ปิด WiFi และ Bluetooth เมื่อไม่ใช้ ปิดโปรแกรมที่รันอยู่เบื้องหลัง และใช้ Power Saver Mode
+Zoom วิดีโอไม่ขึ้น,ให้เช็ค Privacy Settings ว่าอนุญาตให้ Zoom ใช้กล้องหรือเปล่า และตรวจสอบว่าไม่มีโปรแกรมอื่นใช้กล้องอยู่
+พิมพ์ภาษาไทยไม่ได้,ให้เช็คว่าติดตั้ง Thai Language Pack แล้วหรือยัง และตรวจสอบ Input Method ใน Language Settings ให้มีภาษาไทย
+Shortcut บน Desktop หายไป,ให้คลิกขวาที่ Desktop เลือก View > Show Desktop Icons เพื่อให้ Icon กลับมาแสดง
+Task Manager เปิดไม่ได้,ให้ลองกด Ctrl+Shift+Esc หรือคลิกขวาที่ Taskbar แล้วเลือก Task Manager ถ้ายังไม่ได้อาจถูก Malware บล็อก
+ไฟล์ Excel สูตรไม่คำนวณ,ให้เช็คว่า Calculation Mode เป็น Automatic ใน Formulas > Calculation Options > Automatic
+Chrome เปิดช้า,ให้ล้าง Cache ใน Settings > Privacy > Clear Browsing Data ปิด Extension ที่ไม่จำเป็น และอัปเดต Chrome ให้เป็นเวอร์ชันล่าสุด
+Caps Lock ติดตลอด,ให้กดปุ่ม Caps Lock อีกครั้งเพื่อปิด ถ้ากดแล้วยังไม่ดับอาจเป็นปุ่มค้างให้ลองกดหลายๆ ครั้ง
+โปรแกรม Not Responding,ให้รอสัก 1-2 นาทีก่อน ถ้ายังค้างอยู่ให้เปิด Task Manager แล้วกด End Task โปรแกรมจะปิดแต่ข้อมูลที่ยังไม่บันทึกจะหาย
+ไฟล์ Word เสียหายเปิดไม่ได้,ให้เปิด Word แล้วไปที่ File > Open > Browse เลือกไฟล์แล้วกดลูกศรถัดจาก Open เลือก Open and Repair
+เชื่อม Projector ไม่ได้,ให้กด Windows+P เพื่อเลือกโหมดการแสดงผล เลือก Extend หรือ Duplicate และเช็คสาย HDMI หรือ VGA ว่าเสียบแน่นไหม
+Antivirus แจ้งเตือนตลอด,ให้อัปเดต Antivirus ให้เป็นเวอร์ชันล่าสุด ถ้าแจ้งเตือน False Positive ให้ Add to Whitelist แต่ต้องมั่นใจว่าไฟล์ปลอดภัย
+VPN เชื่อมไม่ได้,ให้เช็คว่า Username Password ถูกต้อง และ Server Address ถูกต้อง ลองเปลี่ยน VPN Protocol เช่นจาก OpenVPN เป็น IKEv2
