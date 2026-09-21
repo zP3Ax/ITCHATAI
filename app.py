@@ -15,6 +15,85 @@ st.set_page_config(
     layout="centered"
 )
 
+# ─── CSS ปรับหน้าตาแชทให้เหมือนภาพต้นแบบ ──────────────────
+CHAT_UI_CSS = """
+<style>
+:root{
+    --itc-purple:#8B7FE3;
+    --itc-orange:#F4954A;
+    --itc-bg:#FBF4EC;
+    --itc-avatar:#4FA8E0;
+}
+
+.stApp{ background-color: var(--itc-bg); }
+div[data-testid="stAppViewBlockContainer"]{ padding-bottom: 120px; }
+
+/* ── แถบบนสุด ── */
+.itc-topbar{
+    display:flex; align-items:center; gap:14px;
+    margin: 4px 0 22px 0;
+}
+.itc-topbar .itc-icon{ font-size:22px; color:#2b2b2b; }
+.itc-topbar .itc-pill{
+    flex:1; background:#fff; border:2px solid var(--itc-orange);
+    border-radius:999px; padding:10px 20px; text-align:center;
+    font-weight:600; color:#3a3a3a; font-size:15px;
+}
+
+/* ── ฟองแชท ── */
+.itc-row{ display:flex; margin: 30px 0; position:relative; }
+.itc-row.assistant{ justify-content:flex-start; padding-left:22px; }
+.itc-row.user{ justify-content:flex-end; padding-right:22px; }
+
+.itc-bubble{
+    max-width:72%; padding:16px 20px; font-size:15px; line-height:1.55;
+    color:#fff; white-space:pre-wrap; word-wrap:break-word;
+}
+.itc-bubble.assistant{ background:var(--itc-purple); border-radius:22px 22px 22px 4px; }
+.itc-bubble.user{ background:var(--itc-orange); border-radius:22px 22px 4px 22px; }
+
+.itc-avatar{
+    width:38px; height:38px; border-radius:50%; background:var(--itc-avatar);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-size:18px; position:absolute;
+}
+.itc-row.assistant .itc-avatar{ left:-18px; bottom:-8px; }
+.itc-row.user .itc-avatar{ right:-18px; top:-8px; }
+
+/* ── แถบล่าง (พิมพ์ข้อความ) ── */
+.st-key-bottombar{
+    position:fixed; left:0; right:0; bottom:0; z-index:999;
+    background:var(--itc-bg);
+    padding:10px 0 18px 0;
+    box-shadow: 0 -6px 16px rgba(0,0,0,0.05);
+}
+.st-key-bottombar > div{ max-width:700px; margin:0 auto; padding:0 18px; }
+
+.st-key-bottombar [data-testid="column"]:nth-of-type(1) button{
+    border-radius:50% !important; width:48px; height:48px; min-width:48px;
+    border:none !important;
+    background: conic-gradient(from 180deg,#7B68EE,#4FA8E0,#F472B6,#7B68EE) !important;
+    color:#fff !important; font-size:20px !important; font-weight:700;
+}
+.st-key-bottombar [data-testid="column"]:nth-of-type(3) button{
+    border-radius:50% !important; width:48px; height:48px; min-width:48px;
+    border:none !important; background:#fff !important; color:#2b2b2b !important;
+    font-size:18px !important; box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+.st-key-bottombar [data-testid="column"]:nth-of-type(2){ position:relative; }
+.st-key-bottombar [data-testid="column"]:nth-of-type(2)::before{
+    content:"✨"; position:absolute; left:30px; top:50%;
+    transform:translateY(-50%); z-index:3; font-size:15px;
+}
+.st-key-bottombar [data-testid="column"]:nth-of-type(2) input{
+    border-radius:999px !important; border:none !important;
+    background:#fff !important; padding:12px 18px 12px 42px !important;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+</style>
+"""
+st.markdown(CHAT_UI_CSS, unsafe_allow_html=True)
+
 # ─── ฟังก์ชันโหลด/บันทึก CSV ──────────────────────────────
 def load_data():
     try:
@@ -64,41 +143,90 @@ with st.sidebar:
 # หน้า USER — แชทบอท
 # ══════════════════════════════════════════════════════════
 if page == "🤖 แชทบอท":
-    st.title("💻 IT Chat AI")
-    st.caption("ถามปัญหา IT ได้เลย เช่น wifi ไม่ติด, ลืมรหัสผ่าน, เครื่องช้า")
-    st.divider()
 
     # เก็บประวัติแชทใน session
     if "messages" not in st.session_state:
         st.session_state.messages = []
+    if "pending_question" not in st.session_state:
+        st.session_state.pending_question = None
 
-    # แสดงประวัติแชท
+    # ── แถบบนสุด ──
+    st.markdown(
+        """
+        <div class="itc-topbar">
+            <span class="itc-icon">☰</span>
+            <div class="itc-pill">IT Chat AI 💻</div>
+            <span class="itc-icon">🔍</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    # ── พื้นที่แสดงข้อความ ──
+    if not st.session_state.messages:
+        st.markdown(
+            """
+            <div class="itc-row assistant">
+                <div class="itc-bubble assistant">สวัสดีครับ พิมพ์ปัญหา IT ที่ด้านล่างได้เลย 👇</div>
+                <div class="itc-avatar">🤖</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
     for msg in st.session_state.messages:
-        with st.chat_message(msg["role"]):
-            st.write(msg["content"])
+        role = "user" if msg["role"] == "user" else "assistant"
+        icon = "🧑" if role == "user" else "🤖"
+        text = str(msg["content"]).replace("<", "&lt;").replace(">", "&gt;")
+        st.markdown(
+            f"""
+            <div class="itc-row {role}">
+                <div class="itc-bubble {role}">{text}</div>
+                <div class="itc-avatar">{icon}</div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-    # ช่องพิมพ์คำถาม
-    if question := st.chat_input("พิมพ์ปัญหา IT ของคุณ..."):
+    # ── ประมวลผลคำถามที่ค้างอยู่ (มาจากช่องพิมพ์ด้านล่าง) ──
+    if st.session_state.pending_question:
+        question = st.session_state.pending_question
+        st.session_state.pending_question = None
+        with st.spinner("กำลังคิด..."):
+            df = load_data()
+            context = get_context(df)
+            answer = ask_gemini(question, context)
+            st.session_state.messages.append({"role": "assistant", "content": answer})
+        st.rerun()
 
-        # แสดงคำถามผู้ใช้
-        st.session_state.messages.append({"role": "user", "content": question})
-        with st.chat_message("user"):
-            st.write(question)
+    # ── callback ตอนกดส่ง (Enter) ในช่องพิมพ์ ──
+    def _submit_question():
+        text = st.session_state.get("itc_input", "").strip()
+        if text:
+            st.session_state.messages.append({"role": "user", "content": text})
+            st.session_state.pending_question = text
+        st.session_state.itc_input = ""
 
-        # ดึงข้อมูลจาก CSV แล้วถาม Gemini
-        with st.chat_message("assistant"):
-            with st.spinner("กำลังคิด..."):
-                df = load_data()
-                context = get_context(df)
-                answer = ask_gemini(question, context)
-                st.write(answer)
-                st.session_state.messages.append({"role": "assistant", "content": answer})
+    def _clear_chat():
+        st.session_state.messages = []
+        st.session_state.pending_question = None
 
-    # ปุ่มล้างประวัติแชท
-    if st.session_state.messages:
-        if st.button("🗑️ ล้างประวัติแชท"):
-            st.session_state.messages = []
-            st.rerun()
+    # ── แถบล่าง: ปุ่มเพิ่ม / ช่องพิมพ์ / ไมค์ ──
+    with st.container(key="bottombar"):
+        col_plus, col_input, col_mic = st.columns([1, 6, 1])
+        with col_plus:
+            st.button("＋", key="itc_new_chat", on_click=_clear_chat, help="เริ่มแชทใหม่")
+        with col_input:
+            st.text_input(
+                "ถามอะไรก็ได้",
+                key="itc_input",
+                placeholder="ถามอะไรก็ได้",
+                label_visibility="collapsed",
+                on_change=_submit_question,
+            )
+        with col_mic:
+            if st.button("🎤", key="itc_mic"):
+                st.toast("ฟีเจอร์พูดถามจะมาเร็ว ๆ นี้ 🎙️")
 
 # ══════════════════════════════════════════════════════════
 # หน้า ADMIN — จัดการข้อมูล
