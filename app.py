@@ -128,7 +128,7 @@ def ask_gemini(question, context):
         "ถ้าไม่มีข้อมูลที่ตรงกันให้บอกว่าไม่ทราบและแนะนำให้ติดต่อ IT Support"
     )
     response = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-20b",
         messages=[{"role": "user", "content": prompt}]
     )
     return response.choices[0].message.content
